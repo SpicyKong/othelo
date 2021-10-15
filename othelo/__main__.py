@@ -5,8 +5,9 @@ from othelo.rule import Rule
 from othelo.user import User
 
 if __name__ == '__main__':
-    print(Board)
+    Game(User('user1'), User('user2'), Board(8))
     print(Game)
     print(Piece)
     print(Rule)
+    print(Board)
     print(User)
