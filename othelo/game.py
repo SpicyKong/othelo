@@ -12,4 +12,29 @@ class Game:
         user2.set_turn(1)
         time = 0
     
+    """
+    게임 진행을 시작한다.
+    """
+    def play(self):
+        pass
     
+    """
+    (x, y)위치에 color 색의 게임말을 둔다.
+    """
+    def put_a_piece(self, x, y, color):
+        pass
+    
+    def get_color_place(self, color):
+        return board.get_color_place(color)
+    
+    """
+    플레이어가 턴이 끝났을때 끝났다고 보고
+    """
+    def next_turn(self):
+        self.time += 1
+    
+    """
+    게임 종료
+    """
+    def game_end(self):
+        pass
