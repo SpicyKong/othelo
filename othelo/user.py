@@ -12,9 +12,10 @@ class User:
     
     """
     Piece 객체 하나를 (x, y) 칸에 둔다.
+    put_a_piece(self, x, y, color):
     """
     def put_a_piece(self, x, y):
-        pass
+        self.game.put_a_piece(x, y, self.color)
     
     """
     내 턴을 진행한다

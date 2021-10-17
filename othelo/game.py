@@ -22,10 +22,12 @@ class Game:
     (x, y)위치에 color 색의 게임말을 둔다.
     """
     def put_a_piece(self, x, y, color):
-        pass
+        print(type(piece))
+        p = Piece(color)
+        self.board.put_a_piece(x, y, p)
     
     def get_color_place(self, color):
-        return board.get_color_place(color)
+        return self.board.get_color_place(color)
     
     """
     플레이어가 턴이 끝났을때 끝났다고 보고

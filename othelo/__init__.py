@@ -6,8 +6,9 @@ from othelo.user import User
 
 print(__name__)
 if __name__ == '__main__':
-    Board()
-    Game()
-    Piece()
-    Rule()
-    User()
+    #Board()
+    #Game()
+    #Piece()
+    #Rule()
+    #User()
+    pass

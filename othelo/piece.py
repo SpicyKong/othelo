@@ -5,7 +5,10 @@ class Piece:
         self.color = color
     
     def get_color(self):
-        return color
+        return self.color
     
     def change_color(self):
-        self.color = not color
+        self.color = not self.color
+        
+    def __repr__(self):
+        return str(self.color)
