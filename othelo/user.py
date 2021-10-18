@@ -3,9 +3,12 @@ class User:
     color = None
     game = None
     
-    def __init__(self, username, game):
+    def __init__(self, username):
         self.username = username
+    
+    def set_game(self, game):
         self.game = game
+    
     
     def set_turn(self, color):
         self.color = color
@@ -42,7 +45,13 @@ class User:
     내 말의 색을 반환한다.
     """
     def get_color(self):
-        return color
+        return self.color
     
     def turn_end(self):
         game.next_turn()
+        
+    def put_a_piece_by_input(self):
+        x, y = -1, -1
+        while not self.game.put_a_piece(x, y, self.color):
+            x, y, = map(int, input().split())
+        

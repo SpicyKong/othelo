@@ -30,6 +30,7 @@ class Board:
     """
     def put_a_piece(self, x, y, piece):
         self.board[y][x] = piece
+        self.update(x, y)
         
     """
     color 색의 게임 말을 둘 수 있는 위치들을 알려준다.(set으로 반환)
@@ -51,17 +52,20 @@ class Board:
             return False
         for i in range(8):
             nx, ny = x+self.dx[i], y+self.dy[i]
+            piece = self.get_piece(nx, ny)
             check = 0
-            piece = piece = self.get_piece(nx, ny) ############# 여기
-            while piece and not piece.get_color() == color:
-                check = 1
-                #print(nx, ny)
+            
+            while 0 <= nx < self.size and 0<= ny < self.size:
                 piece = self.get_piece(nx, ny)
+                if piece is None or piece.get_color() == color:
+                    break
+                check = 1
                 nx += self.dx[i]
                 ny += self.dy[i]
-                
-            if piece is not None and piece.get_color() == color and check:
-                return True
+            if piece is None or not piece.get_color() == color or not check:
+                continue
+            #print(piece, check)
+            return True
         return False
         
     
@@ -70,23 +74,23 @@ class Board:
     """
     def update(self, x, y):
         piece = self.get_piece(x, y)
-        color = piece.get_color()
+        
         if piece is None:
             return
+        color = piece.get_color()
         for i in range(8):
             nx, ny = x+self.dx[i], y+self.dy[i]
             piece = self.get_piece(nx, ny)
             tmp = []
             
-            while (piece is not None) and (not piece.get_color() == color):
-                nx += self.dx[i]
-                ny += self.dy[i]
-                if nx < 0 or nx >= self.size or ny < 0 or ny >= self.size:
+            while 0 <= nx < self.size and 0<= ny < self.size:
+                piece = self.get_piece(nx, ny)
+                if piece is None or piece.get_color() == color:
                     break
                 tmp.append((nx, ny))
-                piece = self.get_piece(nx, ny)
-            
-            if (piece is None) or (not piece.get_color() == color) or (not check):
+                nx += self.dx[i]
+                ny += self.dy[i]
+            if piece is None or not piece.get_color() == color:
                 continue
             
             while tmp:
