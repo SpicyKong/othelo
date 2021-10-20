@@ -126,3 +126,19 @@ class Board:
         if x < 0 or x >= self.size or y < 0 or y >= self.size:
             return None
         return self.board[y][x]
+    
+    """
+    흑/백의 스코어를 반환한다.bool
+    """
+    def get_score(self):
+        res = [0, 0]
+        for y in range(self.size):
+            for x in range(self.size):
+                piece = self.get_piece(x, y)
+                if piece is None:
+                    continue
+                res[piece.get_color()] += 1
+        return res
+    
+    def get_size(self):
+        return self.size

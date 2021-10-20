@@ -19,32 +19,23 @@ class Game:
         self.time = 0
     
     """
-    게임 진행을 시작한다. finshed랑 finish_token 리펙토링 하기
+    게임 진행을 시작한다.
+    우선 임시로 직접 입력을 받아 말을 위치시킨다.
     """
     def play(self):
-        finish_token = 2
-        while finish_token:
+        while not self.is_done():
             if self.time%2:
                 user = self.user2
             else:
                 user = self.user1
             self.time += 1
-            places = self.board.get_color_place(user.get_color())
-            if not places:
-                finish_token -= 1
-                continue
-            finish_token = 2
-            
+            print("score : ", self.get_score(self.user1), " : ", self.get_score(self.user2))
             print("now turn's color -", user.get_color())
-            print("you can put on these sites:", places)
             self.board.show()
-            #tm.sleep(0.5)
-            x, y = places.pop()
-            self.put_a_piece(x, y, user.get_color())
         
-            #user.put_a_piece_by_input()
-        print()
+            user.put_a_piece_by_input()
         self.board.show()
+        
     """
     (x, y)위치에 color 색의 게임말을 둔다.
     """
@@ -63,13 +54,22 @@ class Game:
         return self.board.get_color_place(color)
     
     """
-    플레이어가 턴이 끝났을때 끝났다고 보고
+    게임이 끝났다면 True 아니라면 False
     """
-    def next_turn(self):
-        self.time += 1
+    def is_done(self):
+        if self.board.get_color_place(0) or self.board.get_color_place(1):
+            return False
+        return True
     
-    """
-    게임 종료
-    """
-    def game_end(self):
-        pass
+    def get_score(self, user):
+        color = user.get_color()
+        size = self.board.get_size()
+        ret = 0
+        for y in range(size):
+            for x in range(size):
+                piece = self.board.get_piece(x, y)
+                if piece is None:
+                    continue
+                if piece.get_color() == color:
+                    ret += 1
+        return ret

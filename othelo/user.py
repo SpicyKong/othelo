@@ -18,23 +18,8 @@ class User:
     put_a_piece(self, x, y, color):
     """
     def put_a_piece(self, x, y):
-        self.game.put_a_piece(x, y, self.color)
-    
-    """
-    내 턴을 진행한다
-    
-    내 턴 >
-    둘 수 있는 위치를 물어봄 >
-    둘 수 있는 위치 중 하나를 선택 함 >
-    그 위치에 돌을 둠 >
-    턴 종료 >
-    를 무한 반복.
-    
-    Where can i place
-    """
-    def my_turn(self, wcip):
-        pass
-    
+        self.game.put_a_piece(x, y, self.color)=
+        
     """
     (x, y) 위치에 게임 말을 둔다.
     """
@@ -46,9 +31,6 @@ class User:
     """
     def get_color(self):
         return self.color
-    
-    def turn_end(self):
-        game.next_turn()
         
     def put_a_piece_by_input(self):
         x, y = -1, -1
